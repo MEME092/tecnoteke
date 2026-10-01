@@ -65,7 +65,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             Gestor de Contenido (CMS)
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Administra los artículos de <strong>Tecnología para Gente Normal</strong>, edita contenido y gestiona imágenes.
+            Administra los artículos de <strong>Tecnoteke</strong>, edita contenido y gestiona imágenes.
           </p>
         </div>
 

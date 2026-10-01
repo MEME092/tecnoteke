@@ -43,7 +43,7 @@ from models import Article
 # Inicializar Base de Datos SQLite
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Tecnología para Gente Normal")
+app = FastAPI(title="Tecnoteke")
 
 # Montar archivos estáticos (imágenes y assets)
 os.makedirs("static/img", exist_ok=True)
@@ -343,7 +343,7 @@ pydantic==2.6.4
       description: 'Configuración de Nginx como Reverse Proxy hacia Gunicorn/FastAPI, optimizado con gzip, cache de estáticos y límite de subida para fotos.',
       code: `server {
     listen 80;
-    server_name tecnologiaparagentenormal.com www.tecnologiaparagentenormal.com;
+    server_name tecnoteke.lol;
 
     # Límite de subida para fotos de artículos (15MB)
     client_max_body_size 15M;
@@ -402,7 +402,7 @@ WantedBy=multi-user.target
       code: `# GUÍA COMPLETA: DE LOCAL A PRODUCCIÓN EN VPS UBUNTU
 
 ### 1. Compra de Dominio y DNS
-1. Compra tu dominio (ej. \`tecnologiaparagentenormal.com\`) en Namecheap, Porkbun o Cloudflare Registrar (~$10 USD/año).
+1. Configura tu dominio \`tecnoteke.lol\` en el proveedor DNS que utilizas.
 2. Crea una cuenta gratuita en **Cloudflare** y añade tu dominio.
 3. En la sección DNS de Cloudflare, añade dos registros tipo **A**:
    - \`@\` apuntando a la IP pública de tu VPS (ej. \`198.51.100.45\`).
@@ -452,7 +452,7 @@ pip install -r requirements.txt
 
 3. Generar Certificado SSL Gratuito con Let's Encrypt:
    \`\`\`bash
-   sudo certbot --nginx -d tecnologiaparagentenormal.com -d www.tecnologiaparagentenormal.com
+  sudo certbot --nginx -d tecnoteke.lol
    \`\`\`
 
 ### 5. CHECKLIST CRÍTICO DE PUBLICACIÓN

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Article } from './types';
 import { INITIAL_ARTICLES, CATEGORIES } from './data/seedArticles';
 import { Navbar } from './components/Navbar';
@@ -22,18 +22,103 @@ import {
 } from 'lucide-react';
 
 const ARTICLES_PER_PAGE = 9;
+type AppView = 'home' | 'article-detail' | 'admin' | 'admin-edit' | 'admin-new' | 'production' | 'legal';
+type LegalPage = 'about' | 'privacy' | 'cookies' | 'terms' | 'contact';
+
+const LEGAL_PATHS: Record<LegalPage, string> = {
+  about: '/sobre-el-autor',
+  privacy: '/politica-de-privacidad',
+  cookies: '/politica-de-cookies',
+  terms: '/aviso-legal',
+  contact: '/contacto'
+};
+
+const LEGAL_TITLES: Record<LegalPage, string> = {
+  about: 'Sobre el autor',
+  privacy: 'Política de privacidad',
+  cookies: 'Política de cookies',
+  terms: 'Aviso legal',
+  contact: 'Contacto'
+};
+
+const SITE_URL = 'https://tecnoteke.lol';
+
+function resolveRoute(pathname: string, availableArticles = INITIAL_ARTICLES) {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  const categorySlug = path.match(/^\/categoria\/([^/]+)$/)?.[1];
+  if (categorySlug && CATEGORIES.some(category => category.slug === categorySlug)) {
+    return { view: 'home' as AppView, category: categorySlug, article: null, legalPage: 'about' as LegalPage };
+  }
+
+  const articleSlug = path.match(/^\/articulo\/([^/]+)$/)?.[1];
+  if (articleSlug) {
+    const article = availableArticles.find(item => item.slug === articleSlug && item.status === 'Publicado');
+    if (article) return { view: 'article-detail' as AppView, category: 'all', article, legalPage: 'about' as LegalPage };
+  }
+
+  const legalPage = (Object.entries(LEGAL_PATHS).find(([, routePath]) => routePath === path)?.[0]) as LegalPage | undefined;
+  if (legalPage) return { view: 'legal' as AppView, category: 'all', article: null, legalPage };
+
+  return { view: 'home' as AppView, category: 'all', article: null, legalPage: 'about' as LegalPage };
+}
+
+function routePathForState(view: AppView, category: string, article: Article | null, legalPage: LegalPage) {
+  if (view === 'article-detail' && article) return `/articulo/${article.slug}`;
+  if (view === 'legal') return LEGAL_PATHS[legalPage];
+  if (view === 'home' && category !== 'all') return `/categoria/${category}`;
+  if (view === 'admin-edit' && article) return `/admin/articulos/${article.slug}/editar`;
+  if (view === 'admin-new') return '/admin/articulos/nuevo';
+  if (view === 'production') return '/admin/produccion';
+  if (view === 'admin' || view === 'admin-edit') return '/admin';
+  return '/';
+}
 
 export default function App() {
+  const [initialRoute] = useState(() => resolveRoute(window.location.pathname));
+  const isInitialNavigation = useRef(true);
   const [articles, setArticles] = useState<Article[]>(INITIAL_ARTICLES);
-  const [currentView, setCurrentView] = useState<
-    'home' | 'article-detail' | 'admin' | 'admin-edit' | 'admin-new' | 'production' | 'legal'
-  >('home');
-  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [currentView, setCurrentView] = useState<AppView>(initialRoute.view);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(initialRoute.article);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [legalPage, setLegalPage] = useState<'about' | 'privacy' | 'cookies' | 'terms' | 'contact'>('about');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialRoute.category);
+  const [legalPage, setLegalPage] = useState<LegalPage>(initialRoute.legalPage);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    const path = routePathForState(currentView, selectedCategory, selectedArticle, legalPage);
+    const initialNavigation = isInitialNavigation.current;
+    if (window.location.pathname !== path) {
+      window.history[initialNavigation ? 'replaceState' : 'pushState']({}, '', path);
+    }
+    isInitialNavigation.current = false;
+
+    const pageTitle = currentView === 'article-detail' && selectedArticle
+      ? `${selectedArticle.title} | Tecnoteke`
+      : currentView === 'legal'
+        ? `${LEGAL_TITLES[legalPage]} | Tecnoteke`
+        : currentView === 'home' && selectedCategory !== 'all'
+          ? `${CATEGORIES.find(category => category.slug === selectedCategory)?.name || 'Categoría'} | Tecnoteke`
+          : 'Tecnoteke | Tutoriales y soluciones prácticas';
+    document.title = pageTitle;
+
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = `${SITE_URL}${path}`;
+  }, [currentView, selectedArticle, selectedCategory, legalPage]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const route = resolveRoute(window.location.pathname, articles);
+      setCurrentView(route.view);
+      setSelectedCategory(route.category);
+      setSelectedArticle(route.article);
+      setLegalPage(route.legalPage);
+      setCurrentPage(1);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [articles]);
 
   // Artículos filtrados para la vista pública
   const publishedArticles = articles.filter(a => a.status === 'Publicado');
@@ -309,7 +394,7 @@ export default function App() {
                       Rigor Editorial & Verificación
                     </span>
                     <h3 className="text-xl font-bold text-slate-900">
-                      ¿Por qué confiar en Tecnología para Gente Normal?
+                      ¿Por qué confiar en Tecnoteke?
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                       Cada tutorial supera las 1.500 palabras de contenido técnico y es redactado tras ejecutar pruebas exhaustivas en hardware físico en nuestro laboratorio en Barranquilla por Andrés, estudiante de Ingeniería de Sistemas en la Universidad de la Costa (CUC). No publicamos traducciones automáticas ni artículos de relleno sintético.

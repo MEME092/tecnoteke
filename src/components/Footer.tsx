@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Terminal className="w-4 h-4" />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
-                Tecnología para Gente Normal
+                Tecnoteke
               </span>
             </div>
 
@@ -115,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Barra Inferior */}
         <div className="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>
-            © {new Date().getFullYear()} Tecnología para Gente Normal. Diseñado y probado en Barranquilla, Colombia.
+            © {new Date().getFullYear()} Tecnoteke. Diseñado y probado en Barranquilla, Colombia.
           </p>
           <div className="flex items-center gap-2 text-[11px]">
             <span>Hecho con dedicación para usuarios y estudiantes</span>

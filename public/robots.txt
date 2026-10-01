@@ -1,4 +1,4 @@
-# robots.txt para Tecnología para Gente Normal
+# robots.txt para Tecnoteke
 # Permitir indexación completa a Googlebot, Bingbot y AdSense Mediapartners
 
 User-agent: *

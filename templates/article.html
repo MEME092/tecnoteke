@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ article.title }} - Tecnología para Gente Normal{% endblock %}
+{% block title %}{{ article.title }} - Tecnoteke{% endblock %}
 {% block meta_description %}{{ article.excerpt }}{% endblock %}
 
 {% block extra_head %}
@@ -23,7 +23,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Tecnología para Gente Normal"
+    "name": "Tecnoteke"
   },
   "datePublished": "{{ article.created_at.strftime('%Y-%m-%d') }}"
 }

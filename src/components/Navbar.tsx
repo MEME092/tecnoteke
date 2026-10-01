@@ -23,7 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div>
               <span className="font-extrabold text-base sm:text-lg text-slate-900 tracking-tight block leading-tight group-hover:text-indigo-600 transition-colors">
-                Tecnología para Gente Normal
+                Tecnoteke
               </span>
               <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
                 <Shield className="w-3 h-3 text-emerald-600 inline" />

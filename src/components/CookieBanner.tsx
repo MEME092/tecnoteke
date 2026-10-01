@@ -62,7 +62,7 @@ export const CookieBanner: React.FC<CookieBannerProps> = ({ onOpenCookiesPolicy 
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  En <strong>Tecnología para Gente Normal</strong> utilizamos cookies técnicas esenciales y analíticas para recordar preferencias y garantizar el correcto funcionamiento del portal según la Ley 1581.
+                  En <strong>Tecnoteke</strong> utilizamos cookies técnicas esenciales y analíticas para recordar preferencias y garantizar el correcto funcionamiento del portal según la Ley 1581.
                 </p>
               </div>
             </div>

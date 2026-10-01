@@ -81,7 +81,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
               Hola, soy <strong>Andrés</strong>, estudiante de los últimos semestres del programa de Ingeniería de Sistemas en la <strong>Universidad de la Costa (CUC)</strong> en Barranquilla. Mi trayectoria académica y práctica se centra en el desarrollo de software con Python, interfaces modernas con el framework <strong>Flet</strong>, bases de datos relacionales y optimización de sistemas operativos.
             </p>
 
-            <h2 className="text-xl font-bold text-slate-900">Por qué nació "Tecnología para Gente Normal"</h2>
+            <h2 className="text-xl font-bold text-slate-900">Por qué nació Tecnoteke</h2>
             <p className="leading-relaxed">
               Muchas veces, cuando un estudiante, un profesional independiente o un usuario común intenta resolver un problema técnico —como realizar un trámite en la DIAN, compilar una app en Android o quitar aplicaciones basura de su teléfono Xiaomi— se topa con guías desactualizadas, llenas de enlaces maliciosos o con lenguaje incomprensible.
             </p>
@@ -125,7 +125,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
 
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-4">
             <p>
-              En <strong>Tecnología para Gente Normal</strong>, accesible desde nuestro dominio oficial, la privacidad de nuestros visitantes es de extrema importancia. Este documento detalla los tipos de información que recopilamos y cómo la utilizamos.
+              En <strong>Tecnoteke</strong>, accesible desde nuestro dominio oficial, la privacidad de nuestros visitantes es de extrema importancia. Este documento detalla los tipos de información que recopilamos y cómo la utilizamos.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900">Archivos de Registro (Log Files)</h2>
@@ -191,7 +191,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
                 Declaración de Originalidad y Cero Infracciones de Copyright
               </span>
               <p className="text-xs text-indigo-800 leading-relaxed">
-                El 100% de los artículos, códigos de programación, esquemas lógicos y capturas fotográficas publicadas en <strong>Tecnología para Gente Normal</strong> son obras originales creadas, redactadas y auditadas por <strong>Andrés</strong> (estudiante de Ingeniería de Sistemas en la Universidad de la Costa CUC, Barranquilla, Colombia).
+                El 100% de los artículos, códigos de programación, esquemas lógicos y capturas fotográficas publicadas en <strong>Tecnoteke</strong> son obras originales creadas, redactadas y auditadas por <strong>Andrés</strong> (estudiante de Ingeniería de Sistemas en la Universidad de la Costa CUC, Barranquilla, Colombia).
               </p>
             </div>
 

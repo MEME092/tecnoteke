@@ -99,14 +99,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     "@graph": [
       {
         "@type": "BlogPosting",
-        "@id": `https://tecnologiaparagentenormal.com/${article.slug}#article`,
+        "@id": `https://tecnoteke.lol/articulo/${article.slug}#article`,
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://tecnologiaparagentenormal.com/${article.slug}`
+          "@id": `https://tecnoteke.lol/articulo/${article.slug}`
         },
         "headline": article.title,
         "description": article.excerpt,
-        "image": `https://tecnologiaparagentenormal.com${article.featured_image}`,
+        "image": `https://tecnoteke.lol${article.featured_image}`,
         "author": {
           "@type": "Person",
           "name": AUTHOR_INFO.name,
@@ -120,14 +120,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               "addressCountry": "CO"
             }
           },
-          "url": "https://tecnologiaparagentenormal.com/sobre-el-autor"
+          "url": "https://tecnoteke.lol/sobre-el-autor"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Tecnología para Gente Normal",
+          "name": "Tecnoteke",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://tecnologiaparagentenormal.com/static/img/logo.svg"
+            "url": "https://tecnoteke.lol/static/img/logo.svg"
           }
         },
         "datePublished": article.created_at,
@@ -137,7 +137,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       },
       ...(article.quick_steps && article.quick_steps.length > 0 ? [{
         "@type": "HowTo",
-        "@id": `https://tecnologiaparagentenormal.com/${article.slug}#howto`,
+        "@id": `https://tecnoteke.lol/articulo/${article.slug}#howto`,
         "name": article.title,
         "description": article.excerpt,
         "step": article.quick_steps.map((st, idx) => ({
@@ -149,7 +149,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       }] : []),
       ...(article.faqs && article.faqs.length > 0 ? [{
         "@type": "FAQPage",
-        "@id": `https://tecnologiaparagentenormal.com/${article.slug}#faq`,
+        "@id": `https://tecnoteke.lol/articulo/${article.slug}#faq`,
         "mainEntity": article.faqs.map(faq => ({
           "@type": "Question",
           "name": faq.question,
@@ -527,7 +527,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       {/* Nota de Copyright y Derechos de Autor al pie del artículo */}
       <footer className="mt-8 pt-4 border-t border-slate-200 text-center text-xs text-slate-500">
         <p>
-          {article.copyright_notice || '© 2026 Tecnología para Gente Normal. Fotografías y textos originales bajo licencia CC BY-NC-SA 4.0.'}
+          {article.copyright_notice || '© 2026 Tecnoteke. Fotografías y textos originales bajo licencia CC BY-NC-SA 4.0.'}
         </p>
         <p className="text-[11px] text-slate-400 mt-1">
           Prohibida la reproducción comercial o el raspado automatizado sin autorización previa. Para fines educativos o citas, atribuye a Andrés y enlaza a este tutorial.
