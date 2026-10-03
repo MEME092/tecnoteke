@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Tecnoteke - Tutoriales Reales por Andrés Martínez (CUC){% endblock %}</title>
+  <title>{% block title %}Tecnoteke - Guías prácticas de tecnología{% endblock %}</title>
   
-  <meta name="description" content="{% block meta_description %}Blog de tutoriales prácticos de trámites, programación con Python y Flet, y optimización de sistemas verificados por Andrés Martínez (CUC).{% endblock %}">
+  <meta name="description" content="{% block meta_description %}Guías de trámites digitales, programación con Python y Flet, y herramientas para sistemas y dispositivos.{% endblock %}">
   <meta name="author" content="Andrés Martínez - Estudiante de Ingeniería de Sistemas (Universidad de la Costa CUC)">
   
   <!-- OpenGraph y Twitter Cards para compartir el sitio -->
   <meta property="og:site_name" content="Tecnoteke">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{% block og_title %}Tecnoteke{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Tutoriales técnicos reales y comprobados paso a paso.{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Guías de tecnología, trámites digitales y programación.{% endblock %}">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- CSS compilado por Vite/Tailwind, compartido con la SPA React -->
@@ -86,7 +86,7 @@
         <a href="/categoria/python-flet" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-indigo-600 hover:bg-slate-100">Python & Flet</a>
         <a href="/categoria/apps-moviles" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-indigo-600 hover:bg-slate-100">Apps Móviles</a>
         <a href="/categoria/herramientas" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-indigo-600 hover:bg-slate-100">Herramientas</a>
-        <a href="/sobre-el-autor" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100">Sobre el Autor (E-E-A-T)</a>
+        <a href="/sobre-el-autor" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100">Sobre el autor</a>
         <a href="/contacto" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100">Contacto Directo</a>
       </div>
 
@@ -113,10 +113,10 @@
             </span>
           </div>
           <p class="text-xs text-slate-400 max-w-md leading-relaxed">
-            Tutoriales técnicos reales comprobados en laboratorio por Andrés Martínez, estudiante de Ingeniería de Sistemas en la Universidad de la Costa (CUC), Barranquilla.
+            Guías de tecnología, programación y trámites digitales.
           </p>
           <div class="p-3 bg-slate-800 rounded-xl border border-slate-700 text-xs text-emerald-400 font-semibold">
-            ✓ 100% de tutoriales probados en hardware real con +1.500 palabras
+            Guías prácticas de tecnología y trámites digitales
           </div>
         </div>
 
@@ -133,7 +133,7 @@
         <div>
           <h4 class="text-xs font-bold uppercase tracking-wider text-slate-100 mb-3">Legal & Transparencia</h4>
           <ul class="space-y-2 text-xs">
-            <li><a href="/sobre-el-autor" class="text-slate-400 hover:text-white">Sobre el Autor (E-E-A-T)</a></li>
+            <li><a href="/sobre-el-autor" class="text-slate-400 hover:text-white">Sobre el autor</a></li>
             <li><a href="/politica-de-privacidad" class="text-slate-400 hover:text-white">Política de Privacidad (/privacidad)</a></li>
             <li><a href="/politica-de-cookies" class="text-slate-400 hover:text-white">Política de Cookies (/cookies)</a></li>
             <li><a href="/aviso-legal" class="text-slate-400 hover:text-white">Aviso Legal y Términos</a></li>
@@ -144,14 +144,13 @@
       </div>
 
       <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
-        <p>© 2026 Tecnoteke. Diseñado y probado en Barranquilla, Colombia por Andrés Martínez (CUC).</p>
-        <p>Contenido técnico verificado</p>
+        <p>© 2026 Tecnoteke. Contenido sobre tecnología y trámites digitales.</p>
+        <p>Guías de consulta</p>
       </div>
     </div>
   </footer>
 
-  <!-- Banner de Consentimiento de Cookies (Exigido cada vez que el usuario entra al portal) -->
-  <aside id="tgn-cookie-banner" aria-label="Consentimiento obligatorio de cookies" class="fixed bottom-0 inset-x-0 sm:bottom-6 sm:right-6 sm:left-auto sm:max-w-xl z-50 p-4 sm:p-0">
+  <aside id="tgn-cookie-banner" aria-label="Aviso sobre cookies y anuncios" class="fixed bottom-0 inset-x-0 sm:bottom-6 sm:right-6 sm:left-auto sm:max-w-xl z-50 p-4 sm:p-0">
     <div class="bg-slate-900/98 text-slate-100 p-5 sm:p-6 rounded-3xl shadow-2xl border border-indigo-500/40 backdrop-blur-xl ring-1 ring-white/10 space-y-4">
       <div class="flex items-start gap-3.5">
         <div class="p-3 rounded-2xl bg-indigo-600/30 text-indigo-400 shrink-0 mt-0.5 border border-indigo-500/30 text-xl">
@@ -160,14 +159,14 @@
         <div class="space-y-1.5 flex-1">
           <div class="flex items-center gap-2">
             <h3 class="text-sm font-bold text-white tracking-tight">
-              Aviso de Cookies
+              Aviso de cookies y anuncios
             </h3>
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              Obligatorio al entrar
+              Google AdSense
             </span>
           </div>
           <p class="text-xs text-slate-300 leading-relaxed">
-            En <strong>Tecnoteke</strong> utilizamos cookies técnicas esenciales y analíticas para recordar preferencias y garantizar el correcto funcionamiento del portal según la Ley 1581 de Colombia.
+            Google AdSense se carga en la aplicación y puede utilizar cookies o identificadores según la configuración de Google. Este aviso no bloquea anuncios ni registra consentimiento. Al cerrarlo se guarda la preferencia en el almacenamiento local del navegador.
           </p>
         </div>
       </div>
@@ -178,25 +177,24 @@
           <span>↗</span>
         </a>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onclick="document.getElementById('tgn-cookie-banner').style.display='none'"
-            class="flex-1 sm:flex-none px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition-all border border-slate-700"
-          >
-            Solo necesarias
-          </button>
-          <button
-            type="button"
-            onclick="document.getElementById('tgn-cookie-banner').style.display='none'"
-            class="flex-1 sm:flex-none px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center justify-center gap-1.5"
-          >
-            <span>✓ Aceptar todas</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onclick="try { localStorage.setItem('tecnoteke-cookie-notice-dismissed', 'true'); } catch {} document.getElementById('tgn-cookie-banner').style.display='none'"
+          class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition-all border border-slate-700"
+        >
+          Entendido
+        </button>
       </div>
     </div>
   </aside>
+
+  <script>
+    try {
+      if (localStorage.getItem('tecnoteke-cookie-notice-dismissed') === 'true') {
+        document.getElementById('tgn-cookie-banner')?.remove();
+      }
+    } catch {}
+  </script>
 
 </body>
 </html>

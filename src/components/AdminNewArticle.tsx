@@ -15,14 +15,14 @@ export const AdminNewArticle: React.FC<AdminNewArticleProps> = ({ onSave, onCanc
   const [content, setContent] = useState(`<h2>Introducción</h2>
 <p>Explica aquí de forma clara y directa el problema real que vas a solucionar...</p>
 
-<h2>Paso a paso verificado</h2>
+<h2>Paso a paso</h2>
 <ol>
   <li>Primer paso técnico con instrucciones precisas.</li>
   <li>Segundo paso indicando los comandos o botones exactos.</li>
 </ol>
 
-<h2>💡 Probado por nosotros</h2>
-<p>Verificamos este procedimiento en nuestro equipo de laboratorio, confirmando que funciona sin errores ni riesgos.</p>`);
+<h2>Notas prácticas</h2>
+<p>Incluye recomendaciones útiles, advertencias y contexto para que el lector pueda aplicar el procedimiento con mayor seguridad y claridad.</p>`);
   const [categorySlug, setCategorySlug] = useState<CategorySlug>('tramites');
   const [author, setAuthor] = useState('Andrés');
   const [status, setStatus] = useState<'Publicado' | 'Borrador'>('Publicado');
@@ -81,7 +81,8 @@ export const AdminNewArticle: React.FC<AdminNewArticleProps> = ({ onSave, onCanc
         </div>
 
         <button
-          onClick={handleSubmit}
+          type="submit"
+          form="new-article-form"
           className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm"
         >
           <Save className="w-4 h-4" />
@@ -89,7 +90,7 @@ export const AdminNewArticle: React.FC<AdminNewArticleProps> = ({ onSave, onCanc
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form id="new-article-form" onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-5">
             <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs space-y-4">

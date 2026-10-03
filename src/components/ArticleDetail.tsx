@@ -194,6 +194,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
         </div>
       </div>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+
       {/* Modal / Acordeón para inspeccionar Schema JSON-LD */}
       {showSchema && (
         <div className="mb-6 p-4 bg-slate-900 text-slate-100 rounded-2xl shadow-lg border border-slate-800 text-xs font-mono">
@@ -218,7 +220,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </span>
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-            Experiencia Verificada E-E-A-T
+            Guía técnica de referencia
           </span>
           {article.difficulty && (
             <span className={`px-2.5 py-1 rounded-md text-xs font-semibold border ${
@@ -254,7 +256,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               <div className="font-bold text-sm text-slate-900 flex items-center gap-1.5 group-hover:text-indigo-600 transition-colors">
                 {article.author}
                 <span className="text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 px-1.5 py-0.2 rounded-full">
-                  Autor Verificado
+                  Autor del artículo
                 </span>
               </div>
               <div className="text-xs text-slate-500 flex items-center gap-1">
@@ -300,17 +302,17 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </div>
           <div className="p-3 bg-white rounded-xl border border-slate-200">
             <span className="text-slate-500 block mb-0.5">📖 Extensión técnica:</span>
-            <span className="font-bold text-emerald-700">{wordCount.toLocaleString()} palabras verificadas</span>
+            <span className="font-bold text-emerald-700">{wordCount.toLocaleString()} palabras de guía</span>
           </div>
           <div className="p-3 bg-white rounded-xl border border-slate-200">
-            <span className="text-slate-500 block mb-0.5">💻 Entorno de pruebas:</span>
+            <span className="text-slate-500 block mb-0.5">💻 Entorno de referencia:</span>
             <span className="font-bold text-slate-800 truncate block" title={article.device_tested}>
-              {article.device_tested ? article.device_tested.split('•')[0] : 'Hardware real verificado'}
+              {article.device_tested ? article.device_tested.split('•')[0] : 'Equipo y contexto del artículo'}
             </span>
           </div>
           <div className="p-3 bg-white rounded-xl border border-slate-200">
-            <span className="text-slate-500 block mb-0.5">🛡️ Garantía técnica:</span>
-            <span className="font-bold text-emerald-700">100% Sin riesgo si sigues los pasos</span>
+            <span className="text-slate-500 block mb-0.5">🛡️ Recomendación:</span>
+            <span className="font-bold text-emerald-700">Revisa requisitos y valida cada paso en tu entorno</span>
           </div>
         </div>
       </section>
@@ -337,16 +339,16 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 font-semibold text-slate-800">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>{article.image_caption || 'Captura técnica original generada en el laboratorio de pruebas.'}</span>
+              <span>{article.image_caption || 'Imagen de referencia del tutorial.'}</span>
             </div>
             <span className="text-[11px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-md">
-              100% Autóctona
+              Referencia visual
             </span>
           </div>
           <div className="text-[11px] text-slate-500 flex flex-wrap items-center gap-3 pt-1 border-t border-slate-200/60">
-            <span><strong>Dispositivo:</strong> {article.device_tested || 'Laboratorio CUC Barranquilla'}</span>
+            <span><strong>Contexto:</strong> {article.device_tested || 'Equipo y configuración del manual'}</span>
             <span>•</span>
-            <span><strong>Derechos:</strong> {article.copyright_notice || '© 2026 Andrés - Universidad de la Costa. Sin fotos de stock de terceros.'}</span>
+            <span><strong>Derechos:</strong> {article.copyright_notice || '© 2026 Tecnoteke. Texto y material propio del sitio.'}</span>
           </div>
         </figcaption>
       </figure>
@@ -462,7 +464,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 Preguntas Frecuentes y Solución de Errores Comunes
               </h3>
               <p className="text-xs text-slate-500">
-                Respuestas directas a las dudas más habituales registradas durante nuestras pruebas.
+                Respuestas directas a dudas frecuentes que suelen aparecer al seguir la guía.
               </p>
             </div>
           </div>
@@ -494,7 +496,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
         </section>
       )}
 
-      {/* Caja de Perfil E-E-A-T del Autor al final del artículo */}
+      {/* Caja de perfil del autor al final del artículo */}
       <section className="mt-12 p-6 sm:p-8 bg-gradient-to-br from-slate-50 to-indigo-50/40 rounded-3xl border border-indigo-100 shadow-xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           <div className="w-16 h-16 rounded-2xl bg-indigo-600 text-white font-extrabold text-xl flex items-center justify-center shadow-md shrink-0">
@@ -502,9 +504,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <h4 className="text-lg font-bold text-slate-900">Escrito y verificado por {AUTHOR_INFO.name}</h4>
+              <h4 className="text-lg font-bold text-slate-900">Escrito por {AUTHOR_INFO.name}</h4>
               <span className="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">
-                Autor Verificado
+                Autor del contenido
               </span>
             </div>
             <p className="text-xs font-semibold text-slate-600 mb-2 flex items-center gap-1.5">
@@ -518,7 +520,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               onClick={onOpenAuthorProfile}
               className="text-xs font-bold text-indigo-600 hover:text-indigo-800 underline"
             >
-              Conoce más sobre el autor y nuestro protocolo de pruebas →
+              Conoce más sobre el autor y la metodología del sitio →
             </button>
           </div>
         </div>

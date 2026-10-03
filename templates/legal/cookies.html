@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Política de Cookies - Tecnoteke{% endblock %}
-{% block meta_description %}Información detallada sobre el uso de cookies técnicas y analíticas en Tecnoteke.{% endblock %}
+{% block meta_description %}Información sobre Google AdSense y el almacenamiento local usado para ocultar el aviso de cookies.{% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
@@ -13,22 +13,24 @@
 
     <div class="prose prose-slate max-w-none text-sm text-slate-700 space-y-4">
       <p class="leading-relaxed">
-        Este sitio web utiliza cookies propias y de terceros para optimizar la navegación del usuario y almacenar preferencias de lectura.
+        La aplicación guarda en el almacenamiento local del navegador la preferencia de ocultar el aviso de cookies y anuncios hasta que se borren los datos del sitio. El código de la aplicación no escribe cookies propias.
       </p>
 
       <h2 class="text-lg font-bold text-slate-900">¿Qué es una Cookie?</h2>
       <p class="leading-relaxed">
-        Una cookie es un pequeño archivo de texto que un sitio web almacena en el navegador de tu computadora o dispositivo móvil. Permite recordar acciones pasadas, como la aceptación del aviso legal o preferencias de visualización.
+        Una cookie es un pequeño archivo de texto que un sitio web puede almacenar en el navegador. Google AdSense se carga desde el HTML inicial y puede utilizar cookies o identificadores de terceros según su configuración y políticas.
       </p>
 
-      <h2 class="text-lg font-bold text-slate-900">Tipos de Cookies Utilizadas en este Sitio</h2>
+      <h2 class="text-lg font-bold text-slate-900">Almacenamiento usado por la aplicación</h2>
       <ul>
-        <li><strong>Cookies Técnicas Esenciales:</strong> Necesarias para el correcto funcionamiento del servidor FastAPI, gestión de sesiones seguras en el panel administrativo y prevención de ataques CSRF.</li>
+        <li><strong>Almacenamiento local:</strong> La clave <code>tecnoteke-cookie-notice-dismissed</code> guarda si el usuario ocultó el aviso. No se guarda una elección por categoría ni se controla AdSense desde el aviso.</li>
+        <li><strong>Analítica:</strong> El código de la aplicación no incorpora Google Analytics ni otra herramienta de analítica.</li>
+        <li><strong>Google Fonts:</strong> La página solicita fuentes a <code>fonts.googleapis.com</code> y <code>fonts.gstatic.com</code>; Google recibe esas solicitudes de recursos según sus políticas.</li>
       </ul>
 
       <h2 class="text-lg font-bold text-slate-900">Cómo Deshabilitar o Gestionar las Cookies</h2>
       <p class="leading-relaxed">
-        Puedes restringir, bloquear o eliminar las cookies instaladas en tu equipo configurando las opciones de privacidad de tu navegador web:
+        Puedes borrar el almacenamiento local y bloquear o eliminar cookies desde las opciones de privacidad de tu navegador. Al borrar los datos del sitio, el aviso volverá a mostrarse. Para gestionar la publicidad de Google, consulta las opciones y políticas de Google:
       </p>
       <ul>
         <li><strong>Google Chrome:</strong> Configuración &gt; Privacidad y seguridad &gt; Cookies de terceros.</li>

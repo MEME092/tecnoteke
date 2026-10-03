@@ -104,6 +104,6 @@
     <rect x="0" y="535" width="1080" height="50" rx="16" fill="#030712" />
     <path d="M0 535 h1080 v20 h-1080 z" fill="#030712" />
     <text x="24" y="565" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94a3b8">📸 <tspan fill="#38bdf8" font-weight="700">Captura real de consola ADB</tspan> • Sin imágenes de terceros ni IA sintética • Autor: Andrés (Universidad de la Costa CUC)</text>
-    <text x="910" y="565" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#4ade80" font-weight="700">© 100% Autóctona</text>
+    <text x="910" y="565" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#4ade80" font-weight="700">© Referencia visual</text>
   </g>
 </svg>

@@ -81,9 +81,9 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
     }, 50);
   };
 
-  // Inserción del bloque obligatorio E-E-A-T: <h2>💡 Probado por nosotros</h2>
+  // Inserción de un bloque neutral de observaciones prácticas para el artículo
   const insertTestedBlock = () => {
-    const blockSnippet = `\n\n<h2>💡 Probado por nosotros</h2>\n<p>Realizamos este procedimiento en nuestro laboratorio con fecha ${new Date().toLocaleDateString('es-ES')}, verificando cada paso en un equipo de pruebas con resultados satisfactorios y sin anomalías.</p>\n`;
+    const blockSnippet = `\n\n<h2>Notas prácticas</h2>\n<p>Consulta la documentación oficial y revisa los requisitos actuales antes de aplicar el procedimiento. Mantén una copia de seguridad y valida cada paso en tu entorno específico.</p>\n`;
     setContent(prev => prev + blockSnippet);
   };
 
@@ -147,7 +147,8 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
             Cancelar
           </button>
           <button
-            onClick={handleSubmit}
+            type="submit"
+            form="edit-article-form"
             disabled={isSaving}
             className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm disabled:opacity-50"
           >
@@ -171,7 +172,7 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
       )}
 
       {/* Formulario de edición completo */}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form id="edit-article-form" onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Columna Principal (2 columnas): Título, Slug, Extracto, Contenido */}
@@ -270,15 +271,15 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
                   </button>
                 </div>
 
-                {/* Botón especial E-E-A-T */}
+                {/* Botón para insertar nota práctica neutral */}
                 <button
                   type="button"
                   onClick={insertTestedBlock}
-                  title="Inserta la sección de verificación editorial"
+                  title="Inserta una nota práctica útil para el lector"
                   className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition-colors"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                  + Bloque "💡 Probado por nosotros"
+                  + Bloque "Notas prácticas"
                 </button>
               </div>
 
@@ -403,7 +404,7 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Autor E-E-A-T</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Autor</label>
                 <input
                   type="text"
                   value={author}
@@ -484,14 +485,14 @@ export const AdminEditArticle: React.FC<AdminEditArticleProps> = ({ article, onS
             <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs space-y-2">
               <span className="font-bold text-slate-800 flex items-center gap-1.5">
                 <CheckCircle className="w-4 h-4 text-emerald-600" />
-                Checklist editorial & E-E-A-T
+                Checklist editorial
               </span>
               <ul className="space-y-1.5 text-slate-600 pl-1">
                 <li className="flex items-center gap-1.5">
-                  <span className={content.includes('<h2>💡 Probado por nosotros</h2>') ? 'text-emerald-600 font-bold' : 'text-slate-400'}>
-                    {content.includes('<h2>💡 Probado por nosotros</h2>') ? '✓' : '○'}
+                  <span className={content.includes('<h2>Notas prácticas</h2>') ? 'text-emerald-600 font-bold' : 'text-slate-400'}>
+                    {content.includes('<h2>Notas prácticas</h2>') ? '✓' : '○'}
                   </span>
-                  <span>Bloque "Probado por nosotros" incluido</span>
+                  <span>Bloque "Notas prácticas" incluido</span>
                 </li>
                 <li className="flex items-center gap-1.5">
                   <span className={content.includes('<h2>') ? 'text-emerald-600 font-bold' : 'text-slate-400'}>

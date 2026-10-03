@@ -1,14 +1,15 @@
 # robots.txt para Tecnoteke
-# Permitir indexación completa a Googlebot, Bingbot y AdSense Mediapartners
-
 User-agent: *
 Allow: /
-Disallow: /admin
 Disallow: /api/
 
-# Crawler de Google AdSense
+# Admin responses send X-Robots-Tag: noindex, nofollow. Keep them crawlable so search engines can see the directive.
+
 User-agent: Mediapartners-Google
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/articulos/nuevo
+Disallow: /admin/produccion
 
-# Sitemap oficial
 Sitemap: https://tecnoteke.lol/sitemap.xml

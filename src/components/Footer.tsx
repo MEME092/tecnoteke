@@ -34,10 +34,10 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="p-3.5 bg-slate-800/80 rounded-2xl border border-slate-700/60 text-xs space-y-1">
               <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                 <Shield className="w-3.5 h-3.5" />
-                <span>Compromiso de Calidad Editorial</span>
+                <span>Compromiso Editorial</span>
               </div>
               <p className="text-[11px] text-slate-400 leading-normal">
-                Cada tutorial publicado supera las 1.500 palabras y ha sido ejecutado paso a paso en hardware físico en nuestro laboratorio. No utilizamos contenido autogenerado.
+                El contenido busca explicar procedimientos técnicos con claridad, contexto y referencias útiles para el lector.
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Barra Inferior */}
         <div className="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>
-            © {new Date().getFullYear()} Tecnoteke. Diseñado y probado en Barranquilla, Colombia.
+            © {new Date().getFullYear()} Tecnoteke. Diseñado para guías prácticas y claridad técnica.
           </p>
           <div className="flex items-center gap-2 text-[11px]">
             <span>Hecho con dedicación para usuarios y estudiantes</span>

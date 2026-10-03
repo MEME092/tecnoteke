@@ -230,7 +230,7 @@ async def delete_article(article_id: int, db: Session = Depends(get_db)):
           <textarea id="article-content" name="content" rows="18" required class="w-full p-4 font-mono text-xs border rounded-lg bg-gray-900 text-gray-100 focus:ring-2 focus:ring-indigo-500 leading-relaxed">{{ article.content }}</textarea>
           
           <p class="text-xs text-gray-500">
-            Asegúrate de incluir la sección obligatoria: <code>&lt;h2&gt;💡 Probado por nosotros&lt;/h2&gt;</code> al final para validar E-E-A-T.
+            Asegúrate de incluir una sección de notas prácticas o advertencias útiles al final del artículo para facilitar su uso por parte del lector.
           </p>
         </div>
       </div>
@@ -458,7 +458,7 @@ pip install -r requirements.txt
 ### 5. CHECKLIST CRÍTICO DE PUBLICACIÓN
 Para publicar el sitio con una base técnica sólida:
 - [x] **Mínimo 15 artículos de alto valor** (cumplido: ya tienes los 15 artículos semánticos con casos reales).
-- [x] **E-E-A-T Verificable**: Perfil de Andrés como estudiante de la CUC y la sección "💡 Probado por nosotros".
+- [x] **Transparencia editorial**: perfil de Andrés y una sección clara de notas prácticas y referencias útiles.
 - [x] **Páginas Legales Obligatorias**: Política de Privacidad, Política de Cookies, Aviso Legal y Página de Contacto con correo real.
 - [x] **Cero Contenido de relleno o scraping**: Todo el texto es original y redactado con capturas reales.
 - [x] **Velocidad de carga óptima**: Servir estáticos vía Nginx + CDN de Cloudflare garantiza 95+ en PageSpeed Insights.

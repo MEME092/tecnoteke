@@ -44,8 +44,8 @@
         <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div class="flex items-center justify-between pb-2 border-b border-slate-200">
             <label class="text-xs font-bold uppercase tracking-wider text-slate-700">Contenido HTML Puro</label>
-            <button type="button" onclick="insertTestedBlock()" class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded hover:bg-emerald-100 transition">
-              + Insertar bloque "💡 Probado por nosotros"
+            <button type="button" onclick="insertReferenceBlock()" class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded hover:bg-emerald-100 transition">
+              + Insertar bloque de referencias
             </button>
           </div>
 
@@ -121,9 +121,9 @@ function wrapTag(openTag, closeTag) {
   textarea.value = textarea.value.substring(0, start) + openTag + selected + closeTag + textarea.value.substring(end);
 }
 
-function insertTestedBlock() {
+function insertReferenceBlock() {
   const textarea = document.getElementById('article_content');
-  const block = '\n\n<h2>💡 Probado por nosotros</h2>\n<p>Realizamos este procedimiento en nuestro laboratorio el ' + new Date().toLocaleDateString('es-ES') + ', verificando cada comando y captura de pantalla sin anomalías.</p>\n';
+  const block = '\n\n<h2>Referencias y notas</h2>\n<p>Añade aquí las fuentes consultadas y las notas necesarias. Describe pruebas solo cuando se hayan realizado y puedan documentarse.</p>\n';
   textarea.value += block;
 }
 </script>

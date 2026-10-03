@@ -26,16 +26,14 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
-  const [contactSent, setContactSent] = useState(false);
+  const [contactPrepared, setContactPrepared] = useState(false);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setContactSent(true);
-    setTimeout(() => {
-      setContactName('');
-      setContactEmail('');
-      setContactMessage('');
-    }, 1000);
+    const subject = encodeURIComponent(`Consulta de ${contactName}`);
+    const body = encodeURIComponent(`Nombre: ${contactName}\nCorreo: ${contactEmail}\n\n${contactMessage}`);
+    window.location.href = `mailto:${AUTHOR_INFO.email}?subject=${subject}&body=${body}`;
+    setContactPrepared(true);
   };
 
   return (
@@ -54,15 +52,12 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-6 border-b border-slate-200">
             <img
               src="/static/img/author_andres.svg"
-              alt="Andrés - Autor Verificado"
+              alt="Andrés"
               className="w-20 h-20 rounded-2xl shadow-lg shrink-0 object-cover"
             />
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Andrés</h1>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
-                  Autor Verificado
-                </span>
               </div>
               <p className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
                 <GraduationCap className="w-4 h-4 text-indigo-600" />
@@ -89,25 +84,25 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
               Este sitio web tiene un único propósito: <strong>democratizar el conocimiento técnico de forma directa, honesta y sin rodeos</strong>.
             </p>
 
-            <h2 className="text-xl font-bold text-slate-900">Nuestro Protocolo de Verificación E-E-A-T</h2>
+            <h2 className="text-xl font-bold text-slate-900">Enfoque de elaboración del contenido</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose my-4">
               <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-2xl space-y-1">
                 <span className="font-bold text-xs text-emerald-800 flex items-center gap-1.5">
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  Pruebas en Hardware Físico Real
+                  Procedimientos documentados
                 </span>
                 <p className="text-xs text-emerald-900 leading-relaxed">
-                  No publicamos comandos sin antes ejecutarlos en computadores reales con Windows 11, distribuciones Linux o teléfonos Android con depuración USB habilitada.
+                  El contenido se presenta con explicaciones paso a paso, contexto técnico y referencias útiles para facilitar la comprensión del tema.
                 </p>
               </div>
 
               <div className="p-4 bg-indigo-50/70 border border-indigo-200 rounded-2xl space-y-1">
                 <span className="font-bold text-xs text-indigo-800 flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-indigo-600" />
-                  Fotos Autóctonas y Sin IA
+                  Transparencia editorial
                 </span>
                 <p className="text-xs text-indigo-900 leading-relaxed">
-                  Todas las capturas de pantalla, esquemas y fotografías son obras propias del autor generadas durante las sesiones de prueba en Barranquilla.
+                  Los procedimientos y requisitos pueden cambiar; consulta la fuente oficial antes de iniciar un trámite o aplicar una configuración.
                 </p>
               </div>
             </div>
@@ -120,27 +115,27 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
         <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-sm space-y-6">
           <div className="border-b pb-4">
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Política de Privacidad</h1>
-            <p className="text-xs text-slate-500 mt-1">Última actualización: Septiembre de 2026</p>
+            <p className="text-xs text-slate-500 mt-1">Última actualización: Octubre de 2026</p>
           </div>
 
           <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 space-y-4">
             <p>
-              En <strong>Tecnoteke</strong>, accesible desde nuestro dominio oficial, la privacidad de nuestros visitantes es de extrema importancia. Este documento detalla los tipos de información que recopilamos y cómo la utilizamos.
+              Esta política describe el comportamiento identificado en el código del sitio y las solicitudes a servicios externos cargados por la página.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900">Archivos de Registro (Log Files)</h2>
             <p>
-              Seguimos un procedimiento estándar de uso de archivos de registro. Estos archivos registran a los visitantes cuando visitan sitios web: direcciones de protocolo de internet (IP), tipo de navegador, proveedor de servicios de internet (ISP), fecha y hora, y páginas de referencia.
+              El código de Tecnoteke no crea archivos de registro ni recopila por sí mismo direcciones IP, navegador o páginas de referencia. El proveedor de alojamiento o la red de distribución podrían procesar registros técnicos; esa información depende de sus servicios y políticas, que el sitio no puede confirmar desde esta aplicación.
             </p>
 
-            <h2 className="text-lg font-bold text-slate-900">Cookies de Google y terceros</h2>
+            <h2 className="text-lg font-bold text-slate-900">Cookies, consentimiento y anuncio de servicios</h2>
             <p>
-              Google es uno de los proveedores externos en nuestro sitio. También utiliza cookies, conocidas como cookies de DART, para publicar anuncios a los visitantes de nuestro sitio en función de sus visitas a este y otros sitios en Internet. Los visitantes pueden optar por rechazar el uso de cookies DART visitando la Política de Privacidad de la red de contenido y anuncios de Google.
+              La aplicación guarda en el almacenamiento local del navegador la preferencia de ocultar el aviso de cookies y anuncios. El HTML inicial carga Google AdSense, que puede utilizar cookies o identificadores según la configuración del servicio y las políticas de Google; el aviso no bloquea el script ni registra consentimiento. La página también solicita fuentes a Google Fonts mediante <code>fonts.googleapis.com</code> y <code>fonts.gstatic.com</code>. No se encontró código de Google Analytics ni otra herramienta de analítica en la aplicación.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900">Privacidad y Protección de Datos</h2>
             <p>
-              Si te pones en contacto con nosotros vía correo electrónico, tus datos nunca serán vendidos, alquilados ni transferidos a terceras partes bajo ningún motivo. Puedes solicitar en cualquier momento la supresión de tus mensajes escribiendo a <code>andresy1999f@gmail.com</code>.
+              El formulario de contacto prepara un mensaje en la aplicación de correo del dispositivo mediante un enlace <code>mailto:</code>; Tecnoteke no envía ni almacena ese contenido en un servidor. Si decides enviarlo, el tratamiento posterior depende del proveedor de correo que utilices. Para solicitar la revisión o eliminación de un mensaje enviado, escribe a <code>andresy1999f@gmail.com</code>.
             </p>
           </div>
         </div>
@@ -159,14 +154,17 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
               Una cookie es un archivo de texto de tamaño reducido que un sitio web descarga en tu ordenador o teléfono móvil al navegar por él.
             </p>
 
-            <h2 className="text-lg font-bold text-slate-900">Tipos de Cookies Utilizadas</h2>
+            <h2 className="text-lg font-bold text-slate-900">Tipos de cookies que se pueden utilizar</h2>
             <ul>
-              <li><strong>Cookies Técnicas Necesarias:</strong> Permiten la navegación fluida, guardan la preferencia del tema visual y la sesión de administración.</li>
+              <li><strong>Almacenamiento local:</strong> La aplicación guarda la preferencia de ocultar el aviso en la clave <code>tecnoteke-cookie-notice-dismissed</code> hasta que se borren los datos del sitio. No se almacena una categoría de consentimiento.</li>
+              <li><strong>Google AdSense:</strong> El script de AdSense se carga desde el HTML inicial y puede utilizar cookies o identificadores de terceros para mostrar anuncios. La aplicación no controla esa actividad desde el aviso.</li>
+              <li><strong>Google Fonts:</strong> El HTML solicita fuentes externas a <code>fonts.googleapis.com</code> y <code>fonts.gstatic.com</code>; Google recibe esas solicitudes de recursos según sus propias políticas.</li>
+              <li><strong>Cookies propias y analítica:</strong> El código de la aplicación no escribe cookies propias ni incorpora una herramienta de analítica.</li>
             </ul>
 
             <h2 className="text-lg font-bold text-slate-900">Cómo administrar o bloquear cookies</h2>
             <p>
-              Puedes revocar el consentimiento, bloquear o borrar las cookies instaladas configurando las opciones del navegador instalado en tu dispositivo (Google Chrome, Mozilla Firefox, Microsoft Edge o Apple Safari).
+              Puedes borrar el almacenamiento local y bloquear o eliminar cookies desde la configuración de tu navegador. Borrar los datos del sitio también hará que vuelva a mostrarse el aviso. Para gestionar la publicidad de Google, consulta las opciones y políticas de Google.
             </p>
           </div>
         </div>
@@ -191,7 +189,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
                 Declaración de Originalidad y Cero Infracciones de Copyright
               </span>
               <p className="text-xs text-indigo-800 leading-relaxed">
-                El 100% de los artículos, códigos de programación, esquemas lógicos y capturas fotográficas publicadas en <strong>Tecnoteke</strong> son obras originales creadas, redactadas y auditadas por <strong>Andrés</strong> (estudiante de Ingeniería de Sistemas en la Universidad de la Costa CUC, Barranquilla, Colombia).
+                El contenido publicado en <strong>Tecnoteke</strong> es redactado por <strong>Andrés</strong> y se presenta con el objetivo de ofrecer explicaciones útiles, claras y originales para la comunidad de lectores interesada en tecnología y trámites digitales.
               </p>
             </div>
 
@@ -200,9 +198,9 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
               Para garantizar la originalidad del contenido y evitar cualquier tipo de infracción de derechos de autor (DMCA):
             </p>
             <ul>
-              <li><strong>Sin fotos de stock de terceros:</strong> No utilizamos imágenes extraídas de bancos con derechos de autor restrictivos ni contenido protegido de otros sitios web.</li>
-              <li><strong>Capturas reales de laboratorio:</strong> Todas las imágenes ilustrativas corresponden a capturas directas de terminales, consolas y pantallas ejecutadas sobre hardware propio (computadores portátiles Lenovo IdeaPad y teléfonos Xiaomi/Samsung).</li>
-              <li><strong>Anonimización de datos privados:</strong> En los tutoriales de trámites gubernamentales (como el RUT en la DIAN), cualquier dato personal, número de cédula o dirección privada ha sido sustituido u ofuscado para proteger la privacidad individual sin alterar el valor didáctico del tutorial.</li>
+              <li><strong>Uso de contenido propio:</strong> Cuando se utilizan imágenes o capturas, se prioriza el contenido redactado y generado por el autor para mantener claridad y coherencia editorial.</li>
+              <li><strong>Referencias a terceros:</strong> En algunos artículos se muestran capturas o referencias a plataformas externas con fines explicativos; en esos casos se valora la procedencia y se evita la reproducción innecesaria de material ajeno.</li>
+              <li><strong>Anonimización de datos privados:</strong> En los tutoriales de trámites gubernamentales, cualquier dato personal que pueda aparecer se reemplaza u oculta para proteger la privacidad del lector y evitar revelar información sensible.</li>
             </ul>
 
             <h2 className="text-lg font-bold text-slate-900">2. Licencia de Contenido y Uso Aceptable</h2>
@@ -221,7 +219,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
 
             <h2 className="text-lg font-bold text-slate-900">4. Contacto para Asuntos de Propiedad Intelectual</h2>
             <p>
-              Si tienes cualquier duda legal o consideras que algún elemento requiere revisión, comunícate directamente al buzón oficial: <code>andresy1999f@gmail.com</code>. Las solicitudes se atienden en un plazo máximo de 24 a 48 horas hábiles.
+              Si tienes cualquier duda legal o consideras que algún elemento requiere revisión, comunícate por correo a <code>andresy1999f@gmail.com</code>. El tiempo de respuesta puede variar.
             </p>
           </div>
         </div>
@@ -273,7 +271,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
                   </div>
                   <div>
                     <span className="font-semibold block">Tiempo de Respuesta Estimado:</span>
-                    <span className="text-slate-600 text-xs">Menos de 24 a 48 horas en días hábiles</span>
+                    <span className="text-slate-600 text-xs">El tiempo de respuesta puede variar</span>
                   </div>
                 </div>
               </div>
@@ -281,10 +279,10 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
               <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-800 space-y-1">
                 <span className="font-bold flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  Atención Verificada
+                  Canal directo de contacto
                 </span>
                 <p>
-                  Garantizamos respuesta directa y soporte técnico continuo a cargo del autor del sitio.
+                  El sitio mantiene un canal de contacto por correo para consultas, aclaraciones y sugerencias.
                 </p>
               </div>
             </div>
@@ -293,15 +291,15 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ pageType, onBack }) => {
             <div className="bg-slate-50/60 p-6 rounded-2xl border border-slate-200">
               <h3 className="text-sm font-bold text-slate-900 mb-4">Envíanos un mensaje</h3>
 
-              {contactSent ? (
+              {contactPrepared ? (
                 <div className="p-6 bg-emerald-100 text-emerald-900 rounded-xl text-center space-y-2 animate-fade-in">
                   <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto" />
-                  <p className="font-bold text-sm">¡Mensaje enviado con éxito!</p>
+                  <p className="font-bold text-sm">Solicitud preparada en tu aplicación de correo</p>
                   <p className="text-xs text-emerald-700">
-                    Gracias por contactarnos. Andrés revisará tu consulta a la brevedad.
+                    Tecnoteke no puede confirmar el envío. Revisa el mensaje y envíalo desde tu cliente de correo.
                   </p>
                   <button
-                    onClick={() => setContactSent(false)}
+                    onClick={() => setContactPrepared(false)}
                     className="mt-3 px-3 py-1 bg-white text-emerald-800 rounded-lg text-xs font-semibold shadow-xs"
                   >
                     Enviar otro mensaje

@@ -78,11 +78,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, onSelect, fea
           )}
         </div>
 
-        {/* Sello de verificación E-E-A-T */}
+        {/* Sello funcional */}
         <div className="absolute top-3 right-3">
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/85 text-emerald-400 backdrop-blur-xs border border-white/20 shadow-xs">
             <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-            <span>Probado 100%</span>
+            <span>Guía práctica</span>
           </span>
         </div>
       </div>

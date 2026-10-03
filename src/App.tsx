@@ -43,6 +43,23 @@ const LEGAL_TITLES: Record<LegalPage, string> = {
 
 const SITE_URL = 'https://tecnoteke.lol';
 
+function setMetaTag(name: string, content: string, attributes: { property?: boolean } = {}) {
+  const selector = attributes.property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+  let tag = document.head.querySelector<HTMLMetaElement>(selector);
+
+  if (!tag) {
+    tag = document.createElement('meta');
+    if (attributes.property) {
+      tag.setAttribute('property', name);
+    } else {
+      tag.setAttribute('name', name);
+    }
+    document.head.appendChild(tag);
+  }
+
+  tag.setAttribute('content', content);
+}
+
 function resolveRoute(pathname: string, availableArticles = INITIAL_ARTICLES) {
   const path = pathname.replace(/\/+$/, '') || '/';
   const categorySlug = path.match(/^\/categoria\/([^/]+)$/)?.[1];
@@ -100,7 +117,31 @@ export default function App() {
         : currentView === 'home' && selectedCategory !== 'all'
           ? `${CATEGORIES.find(category => category.slug === selectedCategory)?.name || 'Categoría'} | Tecnoteke`
           : 'Tecnoteke | Tutoriales y soluciones prácticas';
+
+    const pageDescription = currentView === 'article-detail' && selectedArticle
+      ? selectedArticle.excerpt
+      : currentView === 'legal'
+        ? `Página legal de ${LEGAL_TITLES[legalPage].toLowerCase()} de Tecnoteke.`
+        : currentView === 'home' && selectedCategory !== 'all'
+          ? `${CATEGORIES.find(category => category.slug === selectedCategory)?.description || 'Guías prácticas'}.`
+          : 'Guías prácticas de trámites digitales, Python y Flet, Android y herramientas para resolver problemas cotidianos.';
+
+    const ogImage = currentView === 'article-detail' && selectedArticle
+      ? (selectedArticle.featured_image.startsWith('http') ? selectedArticle.featured_image : `${SITE_URL}${selectedArticle.featured_image}`)
+      : `${SITE_URL}/static/img/logo.svg`;
+
     document.title = pageTitle;
+    setMetaTag('description', pageDescription);
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', pageTitle);
+    setMetaTag('twitter:description', pageDescription);
+    setMetaTag('twitter:image', ogImage);
+    setMetaTag('og:title', pageTitle, { property: true });
+    setMetaTag('og:description', pageDescription, { property: true });
+    setMetaTag('og:type', currentView === 'article-detail' ? 'article' : 'website', { property: true });
+    setMetaTag('og:url', `${SITE_URL}${path}`, { property: true });
+    setMetaTag('og:image', ogImage, { property: true });
+    setMetaTag('og:site_name', 'Tecnoteke', { property: true });
 
     const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) canonical.href = `${SITE_URL}${path}`;
@@ -213,7 +254,7 @@ export default function App() {
             <section className="relative overflow-hidden bg-gradient-to-b from-white via-indigo-50/20 to-slate-50 border-b border-slate-200/80 pt-12 pb-14">
               <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 
-                {/* Badge de Autor Verificado */}
+                {/* Badge del autor del artículo */}
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 border border-indigo-200 text-indigo-700 mb-6 shadow-xs">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   <span>Por Andrés • Estudiante de Ingeniería de Sistemas (CUC Barranquilla)</span>
@@ -221,10 +262,10 @@ export default function App() {
 
                 <div className="max-w-3xl">
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
-                    Tutoriales técnicos reales para resolver problemas del día a día.
+                    Guías técnicas para resolver problemas del día a día.
                   </h1>
                   <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6 font-normal">
-                    Sin rodeos ni explicaciones inútiles. Guías completas paso a paso de trámites digitales, programación práctica en <strong>Python & Flet</strong>, optimización avanzada de Android y herramientas verificadas en laboratorio con más de 1.500 palabras por artículo.
+                    Guías prácticas y explicadas con claridad para trámites digitales, programación en <strong>Python & Flet</strong>, optimización de Android y herramientas útiles en la vida cotidiana.
                   </p>
 
                   {/* Buscador de artículos */}
@@ -301,7 +342,7 @@ export default function App() {
                   </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
                     {selectedCategory === 'all'
-                      ? 'Guías extensas paso a paso probadas en laboratorio'
+                      ? 'Guías extensas paso a paso con contexto técnico y explicaciones prácticas'
                       : CATEGORIES.find(c => c.slug === selectedCategory)?.description}
                   </p>
                 </div>
@@ -391,28 +432,28 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                   <div className="md:col-span-2 space-y-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">
-                      Rigor Editorial & Verificación
+                      Enfoque editorial
                     </span>
                     <h3 className="text-xl font-bold text-slate-900">
                       ¿Por qué confiar en Tecnoteke?
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      Cada tutorial supera las 1.500 palabras de contenido técnico y es redactado tras ejecutar pruebas exhaustivas en hardware físico en nuestro laboratorio en Barranquilla por Andrés, estudiante de Ingeniería de Sistemas en la Universidad de la Costa (CUC). No publicamos traducciones automáticas ni artículos de relleno sintético.
+                      Los artículos reúnen contexto, pasos y explicaciones sobre cada tema. En los trámites, consulta también la información vigente publicada por la entidad oficial correspondiente.
                     </p>
                   </div>
 
                   <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-xs">
                     <div className="flex items-center gap-2 text-emerald-700 font-semibold">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Artículos completos (+1.500 palabras)</span>
+                      <span>Extensión visible en cada artículo</span>
                     </div>
                     <div className="flex items-center gap-2 text-emerald-700 font-semibold">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Comandos y código probado en vivo</span>
+                      <span>Comandos y ejemplos explicados con contexto técnico</span>
                     </div>
                     <div className="flex items-center gap-2 text-emerald-700 font-semibold">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Sello "💡 Probado por nosotros" con métricas</span>
+                      <span>Enfoque práctico y transparente para estudiantes y lectores</span>
                     </div>
                   </div>
                 </div>
