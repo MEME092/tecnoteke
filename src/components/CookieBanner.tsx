@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Cookie, ExternalLink } from 'lucide-react';
 
 interface CookieBannerProps {
@@ -11,34 +11,25 @@ const STORAGE_KEY = 'tecnoteke-cookie-notice-dismissed';
 export const CookieBanner: React.FC<CookieBannerProps> = ({
   onOpenCookiesPolicy,
 }) => {
-  // null significa que todavía estamos comprobando el almacenamiento.
-  const [noticeDismissed, setNoticeDismissed] = useState<boolean | null>(
-    null
-  );
-
-  useEffect(() => {
+  const [noticeDismissed, setNoticeDismissed] = useState<boolean>(() => {
     try {
-      setNoticeDismissed(
-        localStorage.getItem(STORAGE_KEY) === 'true'
-      );
+      return localStorage.getItem(STORAGE_KEY) === 'true';
     } catch {
-      // Si el almacenamiento no está disponible, mostramos el aviso.
-      setNoticeDismissed(false);
+      return false;
     }
-  }, []);
+  });
 
   const handleDismiss = () => {
     try {
       localStorage.setItem(STORAGE_KEY, 'true');
     } catch {
-      // El aviso también puede cerrarse si el almacenamiento falla.
+      // El aviso seguirá cerrándose aunque el almacenamiento falle.
     }
 
     setNoticeDismissed(true);
   };
 
-  // Evita que el aviso aparezca y desaparezca durante la inicialización.
-  if (noticeDismissed === null || noticeDismissed) {
+  if (noticeDismissed) {
     return null;
   }
 
@@ -93,3 +84,5 @@ export const CookieBanner: React.FC<CookieBannerProps> = ({
     </aside>
   );
 };
+
+export default CookieBanner;
