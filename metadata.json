@@ -1,0 +1,6 @@
+{
+  "name": "Garnish Botánico",
+  "description": "Revista editorial especializada en el cultivo de flores comestibles para coctelería, alta cocina y presentación gastronómica.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
